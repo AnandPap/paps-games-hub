@@ -1,0 +1,74 @@
+body {
+  background: linear-gradient(to right, hsl(267, 22%, 90%), hsl(223, 50%, 90%));
+  margin-top: 50px;
+}
+.App {
+  width: 80%;
+  margin: auto;
+}
+
+.game-buttons-wrapper {
+  display: flex;
+  gap: 2rem;
+}
+.btn-wrapper {
+}
+.nav-bar-game-button {
+  padding-right: 30px;
+  height: 45px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5rem;
+  background-color: #f5f8fd;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.puzzle {
+  position: relative;
+  right: 1.5rem;
+  width: 4.5rem;
+  transition: transform 0.25s ease 0.05s;
+  cursor: pointer;
+}
+.nav-bar-game-button-text {
+  font-size: 1.2rem;
+  position: relative;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.nav-bar-game-button:hover > .puzzle {
+  transform: translate(0, -0.75rem);
+  filter: invert(0%) drop-shadow(1px 1px 10px coral);
+}
+.nav-bar-game-button:hover {
+  background-color: white;
+}
+
+.container {
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+  height: 70px;
+  display: flex;
+  align-items: flex-end;
+}
+.p-container {
+  display: flex;
+  gap: 1rem;
+  transition: transform 1s ease;
+}
+.scroll-to-right-button,
+.scroll-to-left-button {
+  position: absolute;
+  z-index: 2;
+  bottom: 10px;
+  background-color: transparent;
+}
+.scroll-to-right-button {
+  right: 0;
+  bottom: 0;
+}
+.scroll-to-left-button {
+  position: absolute;
+  left: 0;
+}
