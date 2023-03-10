@@ -13,6 +13,7 @@ function App() {
     elementWidth: number,
     direction: string
   ) => {
+    elementWidth = elementWidth + 32;
     let scrollOffset = Math.floor(containerWidth / elementWidth) * elementWidth;
     if (direction === "right") {
       scrollOffset = -scrollOffset;
@@ -25,12 +26,12 @@ function App() {
         setTotalScrollOffset(0);
       } else if (
         scrollOffset + totalScrollOffset <
-        containerWidth - elementWidth * 8
+        containerWidth - elementWidth * 8 + 32
       ) {
         ref.current.style.transform = `translateX(${
-          containerWidth - elementWidth * 8
+          containerWidth - elementWidth * 8 + 32
         }px)`;
-        setTotalScrollOffset(containerWidth - elementWidth * 8);
+        setTotalScrollOffset(containerWidth - elementWidth * 8 + 32);
       } else {
         ref.current.style.transform = `translateX(${
           scrollOffset + totalScrollOffset
@@ -77,7 +78,7 @@ function App() {
           (ref.current &&
             ref2.current &&
             totalScrollOffset >
-              ref.current.clientWidth - ref2.current.clientWidth * 8)) && (
+              ref.current.clientWidth - ref2.current.clientWidth * 8 + 32)) && (
           <button
             className="scroll-to-right-button"
             onClick={() =>
