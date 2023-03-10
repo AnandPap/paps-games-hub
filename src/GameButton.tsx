@@ -6,9 +6,9 @@ interface GameButtonType {
 
 const GameButton = ({ image, className, text }: GameButtonType) => {
   return (
-    <button className="nav-bar-game-button">
+    <button className="scroll-bar-game-button">
       <img src={image} alt="" className={className} />
-      <p className="nav-bar-game-button-text">{text}</p>
+      <p className="scroll-bar-game-button-text">{text}</p>
     </button>
   );
 };

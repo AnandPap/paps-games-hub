@@ -28,14 +28,16 @@ function App() {
       {totalScrollOffset}
       <div className="game-buttons-wrapper"></div>
       <br />
-      <div ref={ref2} className="container">
+      <div ref={ref2} className="scroll-bar-container">
         {totalScrollOffset < 0 && (
           <button className="scroll-to-left-button" onClick={() => scroll(750)}>
-            asd
+            <div className="scroll-bar-arrow-wrapper ">
+              <div className="scroll-bar-arrow left"></div>
+            </div>
           </button>
         )}
-        <div>
-          <div ref={ref} id="p-container" className="p-container">
+        <div className="game-buttons-wrapper">
+          <div ref={ref} className="game-buttons-container">
             <GameButton image={puzzle} className="puzzle" text="Puzzle" />
             <GameButton image={yatzy} className="puzzle" text="Yatzy" />
             <GameButton image={puzzle} className="puzzle" text="Puzzle" />
@@ -51,7 +53,9 @@ function App() {
             className="scroll-to-right-button"
             onClick={() => scroll(-750)}
           >
-            asd
+            <div className="scroll-bar-arrow-wrapper ">
+              <div className="scroll-bar-arrow right"></div>
+            </div>
           </button>
         )}
       </div>
