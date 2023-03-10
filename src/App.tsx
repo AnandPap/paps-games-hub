@@ -1,36 +1,59 @@
 import puzzle from "./assets/puzzle.png";
 import yatzy from "./assets/yatzy.png";
 import GameButton from "./GameButton";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
   const ref = useRef<HTMLDivElement>(null);
   const ref2 = useRef<HTMLDivElement>(null);
   const [totalScrollOffset, setTotalScrollOffset] = useState(0);
 
-  const scroll = (scrollOffset: number) => {
-    console.log(scrollOffset);
-    console.log(ref2.current?.clientWidth);
-    // if (totalScrollOffset >= 0 && scrollOffset)
+  const scroll = (
+    containerWidth: number,
+    elementWidth: number,
+    direction: string
+  ) => {
+    let scrollOffset = Math.floor(containerWidth / elementWidth) * elementWidth;
+    if (direction === "right") {
+      scrollOffset = -scrollOffset;
+    } else {
+      scrollOffset = scrollOffset;
+    }
     if (ref.current) {
-      if (scrollOffset + totalScrollOffset < 0) {
+      if (scrollOffset + totalScrollOffset > 0) {
         ref.current.style.transform = `translateX(0px)`;
+        setTotalScrollOffset(0);
+      } else if (
+        scrollOffset + totalScrollOffset <
+        containerWidth - elementWidth * 8
+      ) {
+        ref.current.style.transform = `translateX(${
+          containerWidth - elementWidth * 8
+        }px)`;
+        setTotalScrollOffset(containerWidth - elementWidth * 8);
+      } else {
+        ref.current.style.transform = `translateX(${
+          scrollOffset + totalScrollOffset
+        }px)`;
+        setTotalScrollOffset((s) => s + scrollOffset);
       }
-      ref.current.style.transform = `translateX(${
-        scrollOffset + totalScrollOffset
-      }px)`;
-      setTotalScrollOffset((s) => s + scrollOffset);
     }
   };
 
   return (
     <div className="App">
       {totalScrollOffset}
-      <div className="game-buttons-wrapper"></div>
       <br />
-      <div ref={ref2} className="scroll-bar-container">
+      <div className="scroll-bar-container">
         {totalScrollOffset < 0 && (
-          <button className="scroll-to-left-button" onClick={() => scroll(750)}>
+          <button
+            className="scroll-to-left-button"
+            onClick={() =>
+              ref.current &&
+              ref2.current &&
+              scroll(ref.current.clientWidth, ref2.current.clientWidth, "left")
+            }
+          >
             <div className="scroll-bar-arrow-wrapper ">
               <div className="scroll-bar-arrow left"></div>
             </div>
@@ -38,7 +61,9 @@ function App() {
         )}
         <div className="game-buttons-wrapper">
           <div ref={ref} className="game-buttons-container">
-            <GameButton image={puzzle} className="puzzle" text="Puzzle" />
+            <div ref={ref2}>
+              <GameButton image={puzzle} className="puzzle" text="Puzzle" />
+            </div>
             <GameButton image={yatzy} className="puzzle" text="Yatzy" />
             <GameButton image={puzzle} className="puzzle" text="Puzzle" />
             <GameButton image={yatzy} className="puzzle" text="Yatzy" />
@@ -48,10 +73,18 @@ function App() {
             <GameButton image={yatzy} className="puzzle" text="Yatzy" />
           </div>
         </div>
-        {totalScrollOffset > -1000 && (
+        {(totalScrollOffset === 0 ||
+          (ref.current &&
+            ref2.current &&
+            totalScrollOffset >
+              ref.current.clientWidth - ref2.current.clientWidth * 8)) && (
           <button
             className="scroll-to-right-button"
-            onClick={() => scroll(-750)}
+            onClick={() =>
+              ref.current &&
+              ref2.current &&
+              scroll(ref.current.clientWidth, ref2.current.clientWidth, "right")
+            }
           >
             <div className="scroll-bar-arrow-wrapper ">
               <div className="scroll-bar-arrow right"></div>

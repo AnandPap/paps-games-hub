@@ -12,7 +12,6 @@ body {
 }
 
 .scroll-bar-game-button {
-  padding-right: 30px;
   height: 45px;
   cursor: pointer;
   border: none;
@@ -20,6 +19,9 @@ body {
   background-color: #f5f8fd;
   display: flex;
   align-items: center;
+  max-width: fit-content;
+  min-width: 165px;
+  padding-left: 1rem;
 }
 .puzzle {
   position: relative;
@@ -37,10 +39,10 @@ body {
 
 .scroll-bar-container {
   position: relative;
+  flex-grow: 1;
 }
 .game-buttons-wrapper {
   overflow: hidden;
-  padding-left: 1rem;
 }
 .game-buttons-container {
   padding: 1.5rem 0 0.5rem;
