@@ -2,36 +2,54 @@ import puzzle from "./assets/puzzle.png";
 import yatzy from "./assets/yatzy.png";
 import GameButton from "./GameButton";
 import { useEffect, useRef, useState } from "react";
+import ScrollBarArrow from "./ScrollButtonArrow";
+import ScrollButton from "./ScrollButton";
 
 function App() {
   const ref = useRef<HTMLDivElement>(null);
-  const ref2 = useRef<HTMLDivElement>(null);
   const [totalScrollOffset, setTotalScrollOffset] = useState(0);
+  const gameButonsArray = [
+    { image: puzzle, text: "Etch A Sketch" },
+    { image: yatzy, text: "Yatzy" },
+    { image: puzzle, text: "Hangman" },
+    { image: puzzle, text: "Tic Tac Toe" },
+    { image: puzzle, text: "Minesweeper" },
+    { image: puzzle, text: "Mastermind" },
+    { image: puzzle, text: "Number Guessing Game" },
+  ];
 
-  const scroll = (
-    containerWidth: number,
-    elementWidth: number,
-    direction: string
-  ) => {
-    elementWidth = elementWidth + 32;
-    let scrollOffset = Math.floor(containerWidth / elementWidth) * elementWidth;
+  const scroll = (containerWidth: number, direction: string) => {
+    let scrollOffset = Math.floor(containerWidth);
     if (direction === "right") {
       scrollOffset = -scrollOffset;
     } else {
       scrollOffset = scrollOffset;
     }
     if (ref.current) {
+      const gameButtonsArray = ref.current.getElementsByClassName(
+        "scroll-bar-game-button"
+      );
+      let gameButtonsLengthArray = [];
+      for (let i = 0; i < gameButtonsArray.length; i++) {
+        gameButtonsLengthArray.push(gameButtonsArray[i].clientWidth);
+      }
+      console.log(gameButtonsLengthArray);
+      console.log(ref.current.getElementsByClassName("scroll-bar-game-button"));
+      console.log(ref.current.scrollWidth);
+      console.log(ref.current.offsetWidth);
       if (scrollOffset + totalScrollOffset > 0) {
         ref.current.style.transform = `translateX(0px)`;
         setTotalScrollOffset(0);
       } else if (
         scrollOffset + totalScrollOffset <
-        containerWidth - elementWidth * 8 + 32
+        -ref.current.scrollWidth + ref.current.offsetWidth
       ) {
         ref.current.style.transform = `translateX(${
-          containerWidth - elementWidth * 8 + 32
+          -ref.current.scrollWidth + ref.current.offsetWidth
         }px)`;
-        setTotalScrollOffset(containerWidth - elementWidth * 8 + 32);
+        setTotalScrollOffset(
+          -ref.current.scrollWidth + ref.current.offsetWidth
+        );
       } else {
         ref.current.style.transform = `translateX(${
           scrollOffset + totalScrollOffset
@@ -47,50 +65,30 @@ function App() {
       <br />
       <div className="scroll-bar-container">
         {totalScrollOffset < 0 && (
-          <button
-            className="scroll-to-left-button"
+          <ScrollButton
+            className="left"
             onClick={() =>
-              ref.current &&
-              ref2.current &&
-              scroll(ref.current.clientWidth, ref2.current.clientWidth, "left")
+              ref.current && scroll(ref.current.clientWidth, "left")
             }
-          >
-            <div className="scroll-bar-arrow-wrapper ">
-              <div className="scroll-bar-arrow left"></div>
-            </div>
-          </button>
+          />
         )}
         <div className="game-buttons-wrapper">
-          <div ref={ref} className="game-buttons-container">
-            <div ref={ref2}>
-              <GameButton image={puzzle} className="puzzle" text="Puzzle" />
-            </div>
-            <GameButton image={yatzy} className="puzzle" text="Yatzy" />
-            <GameButton image={puzzle} className="puzzle" text="Puzzle" />
-            <GameButton image={yatzy} className="puzzle" text="Yatzy" />
-            <GameButton image={puzzle} className="puzzle" text="Puzzle" />
-            <GameButton image={yatzy} className="puzzle" text="Yatzy" />
-            <GameButton image={puzzle} className="puzzle" text="Puzzle" />
-            <GameButton image={yatzy} className="puzzle" text="Yatzy" />
+          <div id="asd" ref={ref} className="game-buttons-container">
+            {gameButonsArray.map((object, i) => (
+              <GameButton key={i} image={object.image} text={object.text} />
+            ))}
           </div>
         </div>
         {(totalScrollOffset === 0 ||
           (ref.current &&
-            ref2.current &&
             totalScrollOffset >
-              ref.current.clientWidth - ref2.current.clientWidth * 8 + 32)) && (
-          <button
-            className="scroll-to-right-button"
+              -ref.current.scrollWidth + ref.current.offsetWidth)) && (
+          <ScrollButton
+            className="right"
             onClick={() =>
-              ref.current &&
-              ref2.current &&
-              scroll(ref.current.clientWidth, ref2.current.clientWidth, "right")
+              ref.current && scroll(ref.current.clientWidth, "right")
             }
-          >
-            <div className="scroll-bar-arrow-wrapper ">
-              <div className="scroll-bar-arrow right"></div>
-            </div>
-          </button>
+          />
         )}
       </div>
       <footer>

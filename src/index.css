@@ -11,7 +11,7 @@ body {
   margin: auto;
 }
 
-.scroll-bar-game-button {
+.game-button {
   height: 45px;
   cursor: pointer;
   border: none;
@@ -19,20 +19,21 @@ body {
   background-color: #f5f8fd;
   display: flex;
   align-items: center;
-  max-width: fit-content;
-  min-width: 165px;
-  padding-left: 1rem;
-}
-.puzzle {
+  padding: 0 1rem 0 4.5rem;
   position: relative;
-  right: 1.5rem;
+  min-width: fit-content;
+}
+.game-button-image {
+  position: absolute;
+  left: 0;
   width: 4.5rem;
   transition: transform 0.25s ease 0.05s;
 }
-.scroll-bar-game-button-text {
+.game-button-text {
   font-size: 1.2rem;
+  position: relative;
 }
-.scroll-bar-game-button:hover > .puzzle {
+.game-button:hover > .game-button-image {
   transform: translate(0, -0.75rem);
   filter: invert(0%) drop-shadow(1px 1px 10px coral);
 }
@@ -50,8 +51,8 @@ body {
   gap: 2rem;
   transition: transform 1s ease;
 }
-.scroll-to-right-button,
-.scroll-to-left-button {
+.scroll-left-button,
+.scroll-right-button {
   position: absolute;
   z-index: 1;
   background-color: transparent;
@@ -59,11 +60,11 @@ body {
   top: 40%;
   padding: 0;
 }
-.scroll-to-right-button {
-  right: -2rem;
-}
-.scroll-to-left-button {
+.scroll-left-button {
   left: -2rem;
+}
+.scroll-right-button {
+  right: -2rem;
 }
 .scroll-bar-arrow-wrapper {
   border-radius: 50%;

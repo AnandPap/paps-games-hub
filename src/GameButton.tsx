@@ -1,14 +1,13 @@
 interface GameButtonType {
   image: string;
-  className: string;
   text: string;
 }
 
-const GameButton = ({ image, className, text }: GameButtonType) => {
+const GameButton = ({ image, text }: GameButtonType) => {
   return (
-    <button className="scroll-bar-game-button">
-      <img src={image} alt="" className={className} />
-      <p className="scroll-bar-game-button-text">{text}</p>
+    <button className="game-button">
+      <img src={image} alt="Game Button" className="game-button-image" />
+      <p className="game-button-text">{text}</p>
     </button>
   );
 };
