@@ -1,13 +1,12 @@
 import puzzle from "./assets/puzzle.png";
 import yatzy from "./assets/yatzy.png";
 import GameButton from "./GameButton";
-import { useEffect, useRef, useState } from "react";
-import ScrollBarArrow from "./ScrollButtonArrow";
+import { useRef, useState } from "react";
 import ScrollButton from "./ScrollButton";
 
 function App() {
-  const ref = useRef<HTMLDivElement>(null);
   const [totalScrollOffset, setTotalScrollOffset] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
   const gameButonsArray = [
     { image: puzzle, text: "Etch A Sketch" },
     { image: yatzy, text: "Yatzy" },
@@ -18,38 +17,35 @@ function App() {
     { image: puzzle, text: "Number Guessing Game" },
   ];
 
-  const scroll = (containerWidth: number, direction: string) => {
-    let scrollOffset = Math.floor(containerWidth);
-    if (direction === "right") {
-      scrollOffset = -scrollOffset;
-    } else {
-      scrollOffset = scrollOffset;
-    }
+  const scroll = (direction: string) => {
     if (ref.current) {
-      const gameButtonsArray = ref.current.getElementsByClassName(
-        "scroll-bar-game-button"
-      );
-      let gameButtonsLengthArray = [];
+      const gap = 32;
+      let scrollOffset = 0;
+      const gameButtonsArray =
+        ref.current.getElementsByClassName("game-button");
+      let gameButtonsLengthsArray = [];
       for (let i = 0; i < gameButtonsArray.length; i++) {
-        gameButtonsLengthArray.push(gameButtonsArray[i].clientWidth);
+        gameButtonsLengthsArray.push(gameButtonsArray[i].clientWidth + gap);
       }
-      console.log(gameButtonsLengthArray);
-      console.log(ref.current.getElementsByClassName("scroll-bar-game-button"));
-      console.log(ref.current.scrollWidth);
-      console.log(ref.current.offsetWidth);
+      for (let i = 0; i < gameButtonsLengthsArray.length; i++) {
+        scrollOffset += gameButtonsLengthsArray[i];
+        if (scrollOffset > ref.current.clientWidth) {
+          scrollOffset -= gameButtonsLengthsArray[i];
+          break;
+        }
+      }
+      console.log(gameButtonsLengthsArray);
       if (scrollOffset + totalScrollOffset > 0) {
         ref.current.style.transform = `translateX(0px)`;
         setTotalScrollOffset(0);
       } else if (
         scrollOffset + totalScrollOffset <
-        -ref.current.scrollWidth + ref.current.offsetWidth
+        ref.current.scrollWidth + ref.current.clientWidth
       ) {
         ref.current.style.transform = `translateX(${
-          -ref.current.scrollWidth + ref.current.offsetWidth
+          ref.current.scrollWidth + ref.current.clientWidth
         }px)`;
-        setTotalScrollOffset(
-          -ref.current.scrollWidth + ref.current.offsetWidth
-        );
+        setTotalScrollOffset(ref.current.scrollWidth + ref.current.clientWidth);
       } else {
         ref.current.style.transform = `translateX(${
           scrollOffset + totalScrollOffset
@@ -65,15 +61,10 @@ function App() {
       <br />
       <div className="scroll-bar-container">
         {totalScrollOffset < 0 && (
-          <ScrollButton
-            className="left"
-            onClick={() =>
-              ref.current && scroll(ref.current.clientWidth, "left")
-            }
-          />
+          <ScrollButton className="left" onClick={() => scroll("left")} />
         )}
         <div className="game-buttons-wrapper">
-          <div id="asd" ref={ref} className="game-buttons-container">
+          <div ref={ref} className="game-buttons-container">
             {gameButonsArray.map((object, i) => (
               <GameButton key={i} image={object.image} text={object.text} />
             ))}
@@ -82,13 +73,8 @@ function App() {
         {(totalScrollOffset === 0 ||
           (ref.current &&
             totalScrollOffset >
-              -ref.current.scrollWidth + ref.current.offsetWidth)) && (
-          <ScrollButton
-            className="right"
-            onClick={() =>
-              ref.current && scroll(ref.current.clientWidth, "right")
-            }
-          />
+              -ref.current.scrollWidth + ref.current.clientWidth)) && (
+          <ScrollButton className="right" onClick={() => scroll("right")} />
         )}
       </div>
       <footer>
