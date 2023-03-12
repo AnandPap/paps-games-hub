@@ -36,7 +36,7 @@
 }
 .game-button:hover > .game-button-image {
   transform: translate(0, -0.75rem);
-  filter: invert(0%) drop-shadow(1px 1px 10px coral);
+  filter: invert(0%) drop-shadow(1px 1px 10px hsl(0, 0%, 80%));
 }
 
 .scroll-left-button,

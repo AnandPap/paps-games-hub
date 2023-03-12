@@ -1,22 +1,26 @@
 import { useRef, useState } from "react";
 import GameButton from "./GameButton";
 import ScrollButton from "./ScrollButton";
-import puzzle from "./images/puzzle.png";
+import mastermind from "./images/mastermind.png";
 import yatzy from "./images/yatzy.png";
-import ticTacToe from "./images/ticTacToe.png";
+import mine from "./images/mine.png";
+import hangman from "./images/hangman.png";
+import tictactoe from "./images/tic-tac-toe.png";
+import etch from "./images/etch.png";
+import guessthenumber from "./images/guess-the-number.png";
 import "./scrollbar.css";
 
 const ScrollBar = () => {
   const [totalScrollOffset, setTotalScrollOffset] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const gameButonsArray = [
-    { image: puzzle, text: "Etch A Sketch" },
+    { image: guessthenumber, text: "Number Guessing Game" },
+    { image: tictactoe, text: "Tic Tac Toe" },
+    { image: etch, text: "Etch-A-Sketch" },
+    { image: mine, text: "Minesweeper" },
+    { image: mastermind, text: "Mastermind" },
     { image: yatzy, text: "Yatzy" },
-    { image: puzzle, text: "Hangman" },
-    { image: ticTacToe, text: "Tic Tac Toe" },
-    { image: puzzle, text: "Minesweeper" },
-    { image: puzzle, text: "Mastermind" },
-    { image: puzzle, text: "Number Guessing Game" },
+    { image: hangman, text: "Hangman" },
   ];
 
   const scroll = (direction: string) => {
@@ -43,6 +47,7 @@ const ScrollBar = () => {
             break;
           }
         }
+        if (scrollOffset === 0) scrollOffset = ref.current.offsetWidth;
         scrollOffset = -scrollOffset;
         ref.current.style.transform = `translateX(${
           scrollOffset + totalScrollOffset
@@ -51,13 +56,14 @@ const ScrollBar = () => {
       } else {
         scrollOffset = -ref.current.scrollWidth;
         for (let i = gameButtonsLengthsArray.length - 1; i >= 0; i--) {
-          console.log(scrollOffset);
           scrollOffset += gameButtonsLengthsArray[i];
           if (scrollOffset > totalScrollOffset + ref.current.offsetWidth) {
-            scrollOffset -= gameButtonsLengthsArray[i];
+            if (scrollOffset !== 0 && scrollOffset < -32)
+              scrollOffset -= gameButtonsLengthsArray[i];
             break;
           }
         }
+        if (scrollOffset === 0) scrollOffset = ref.current.offsetWidth;
         if (scrollOffset >= -2) {
           ref.current.style.transform = `translateX(0px)`;
           setTotalScrollOffset(0);
