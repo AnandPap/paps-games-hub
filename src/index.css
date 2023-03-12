@@ -1,95 +1,9 @@
 body {
-  margin-top: 50px;
   font-family: Georgia, "Times New Roman", Times, serif;
   background-image: url(https://thaka.bing.com/th?id=OUWL.casual_games_background_light);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-}
-.App {
   width: 80%;
   margin: auto;
-}
-
-.game-button {
-  height: 45px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5rem;
-  background-color: #f5f8fd;
-  display: flex;
-  align-items: center;
-  padding: 0 1rem 0 4.5rem;
-  position: relative;
-  min-width: fit-content;
-}
-.game-button-image {
-  position: absolute;
-  left: 0;
-  width: 4.5rem;
-  transition: transform 0.25s ease 0.05s;
-}
-.game-button-text {
-  font-size: 1.2rem;
-  position: relative;
-}
-.game-button:hover > .game-button-image {
-  transform: translate(0, -0.75rem);
-  filter: invert(0%) drop-shadow(1px 1px 10px coral);
-}
-
-.scroll-bar-container {
-  position: relative;
-  flex-grow: 1;
-}
-.game-buttons-wrapper {
-  overflow: hidden;
-}
-.game-buttons-container {
-  padding: 1.5rem 0 0.5rem;
-  display: flex;
-  gap: 2rem;
-  transition: transform 1s ease;
-}
-.scroll-left-button,
-.scroll-right-button {
-  position: absolute;
-  z-index: 1;
-  background-color: transparent;
-  border: none;
-  top: 40%;
-  padding: 0;
-}
-.scroll-left-button {
-  left: -2rem;
-}
-.scroll-right-button {
-  right: -2rem;
-}
-.scroll-bar-arrow-wrapper {
-  border-radius: 50%;
-  background-color: white;
-  width: 30px;
-  height: 30px;
-  position: relative;
-  cursor: pointer;
-}
-.scroll-bar-arrow-wrapper:hover {
-  background-color: whitesmoke;
-}
-.scroll-bar-arrow {
-  border: solid black;
-  border-width: 0 2px 2px 0;
-  padding: 0.3rem;
-  position: absolute;
-}
-.left {
-  top: 30%;
-  left: 35%;
-  transform: rotate(135deg);
-}
-.right {
-  top: 30%;
-  left: 25%;
-  transform: rotate(-45deg);
 }

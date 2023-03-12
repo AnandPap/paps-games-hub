@@ -1,4 +1,4 @@
-import ScrollButtonArrow from "./ScrollButtonArrow";
+import Arrow from "./Arrow";
 
 const ScrollButton = (props: {
   className: string;
@@ -9,7 +9,7 @@ const ScrollButton = (props: {
       className={`scroll-${props.className}-button`}
       onClick={props.onClick}
     >
-      <ScrollButtonArrow className={props.className} />
+      <Arrow className={props.className} />
     </button>
   );
 };
