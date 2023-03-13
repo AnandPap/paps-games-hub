@@ -15,16 +15,15 @@ const ScrollBar = () => {
   const [widthOf, setWidthOf] = useState({ screen: 0, container: 0 });
   const ref = useRef<HTMLDivElement>(null);
   const gameButonsArray = [
-    { image: guessthenumber, text: "Number Guessing Game" },
-    { image: tictactoe, text: "Tic Tac Toe" },
-    { image: etch, text: "Etch-A-Sketch" },
     { image: mine, text: "Minesweeper" },
+    { image: tictactoe, text: "Tic Tac Toe" },
     { image: mastermind, text: "Mastermind" },
-    { image: yatzy, text: "Yatzy" },
     { image: hangman, text: "Hangman" },
+    { image: guessthenumber, text: "Number Guessing Game" },
+    { image: etch, text: "Etch-A-Sketch" },
+    { image: yatzy, text: "Yatzy" },
   ];
   const errorMargin = 2;
-  const scrollHistory = useRef<number[]>([0]);
 
   useEffect(() => {
     if (ref.current)
@@ -46,7 +45,6 @@ const ScrollBar = () => {
         gameButtonsLengthsArray.push(gameButtonsArray[i].clientWidth + gap);
 
       if (direction === "right") {
-        scrollHistory.current.push(totalScrollOffset);
         for (let i = 0; i < gameButtonsLengthsArray.length; i++) {
           scrollOffset += gameButtonsLengthsArray[i];
           if (
@@ -61,13 +59,30 @@ const ScrollBar = () => {
         ref.current.style.transform = `translateX(-${scrollOffset}px)`;
         setTotalScrollOffset(scrollOffset);
       } else if (direction === "left") {
+        let i = 0;
+        for (i = 0; i < gameButtonsLengthsArray.length; i++) {
+          scrollOffset += gameButtonsLengthsArray[i];
+          if (Math.abs(scrollOffset - totalScrollOffset) <= errorMargin) {
+            scrollOffset = 0;
+            break;
+          }
+        }
+        for (i; i > -1; i--) {
+          scrollOffset += gameButtonsLengthsArray[i];
+          if (
+            gameButtonsLengthsArray[i] > ref.current.offsetWidth &&
+            scrollOffset === gameButtonsLengthsArray[i]
+          )
+            break;
+          if (scrollOffset > ref.current.offsetWidth + gap) {
+            scrollOffset -= gameButtonsLengthsArray[i];
+            break;
+          }
+        }
         ref.current.style.transform = `translateX(-${
-          scrollHistory.current[scrollHistory.current.length - 1]
+          totalScrollOffset - scrollOffset
         }px)`;
-        setTotalScrollOffset(
-          scrollHistory.current[scrollHistory.current.length - 1]
-        );
-        scrollHistory.current.pop();
+        setTotalScrollOffset(totalScrollOffset - scrollOffset);
       } else {
         return;
       }
@@ -76,7 +91,7 @@ const ScrollBar = () => {
 
   return (
     <div className="scrollbar">
-      {totalScrollOffset > 0 && (
+      {totalScrollOffset > errorMargin && (
         <ScrollButton className="left" onClick={() => scroll("left")} />
       )}
       <div className="game-buttons-container-wrapper">
@@ -86,7 +101,8 @@ const ScrollBar = () => {
           ))}
         </div>
       </div>
-      {((totalScrollOffset === 0 && widthOf.container > widthOf.screen) ||
+      {((totalScrollOffset < errorMargin &&
+        widthOf.container > widthOf.screen) ||
         (ref.current &&
           totalScrollOffset <
             ref.current.scrollWidth -
