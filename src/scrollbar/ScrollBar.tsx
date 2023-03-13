@@ -24,6 +24,7 @@ const ScrollBar = () => {
     { image: hangman, text: "Hangman" },
   ];
   const errorMargin = 2;
+  const scrollHistory = useRef<number[]>([0]);
 
   useEffect(() => {
     if (ref.current)
@@ -41,19 +42,17 @@ const ScrollBar = () => {
       let gameButtonsLengthsArray = [];
       let scrollOffset = 0;
 
-      for (let i = 0; i < gameButtonsArray.length; i++) {
-        if (i === gameButtonsArray.length - 1)
-          gameButtonsLengthsArray.push(gameButtonsArray[i].clientWidth);
-        else
-          gameButtonsLengthsArray.push(gameButtonsArray[i].clientWidth + gap);
-      }
+      for (let i = 0; i < gameButtonsArray.length; i++)
+        gameButtonsLengthsArray.push(gameButtonsArray[i].clientWidth + gap);
 
       if (direction === "right") {
+        scrollHistory.current.push(totalScrollOffset);
         for (let i = 0; i < gameButtonsLengthsArray.length; i++) {
           scrollOffset += gameButtonsLengthsArray[i];
-          // + 32 ispod za kada je gap posljednjeg buttona u okviru velicine screen-a, da ne bi moralo ponovo pokazati njega na scroll
-          if (scrollOffset > totalScrollOffset + ref.current.offsetWidth + 32) {
-            // uslov ispod za kada treba skrolati samo jedan, tj za male ekrane
+          if (
+            scrollOffset >
+            totalScrollOffset + ref.current.offsetWidth + gap
+          ) {
             if (scrollOffset - totalScrollOffset > gameButtonsLengthsArray[i])
               scrollOffset -= gameButtonsLengthsArray[i];
             break;
@@ -61,22 +60,16 @@ const ScrollBar = () => {
         }
         ref.current.style.transform = `translateX(-${scrollOffset}px)`;
         setTotalScrollOffset(scrollOffset);
+      } else if (direction === "left") {
+        ref.current.style.transform = `translateX(-${
+          scrollHistory.current[scrollHistory.current.length - 1]
+        }px)`;
+        setTotalScrollOffset(
+          scrollHistory.current[scrollHistory.current.length - 1]
+        );
+        scrollHistory.current.pop();
       } else {
-        for (let i = 0; i < gameButtonsLengthsArray.length; i++) {
-          scrollOffset += gameButtonsLengthsArray[i];
-          if (scrollOffset > totalScrollOffset - ref.current.offsetWidth) {
-            if (scrollOffset === gameButtonsLengthsArray[i])
-              scrollOffset -= gameButtonsLengthsArray[i];
-            break;
-          }
-        }
-        if (scrollOffset <= errorMargin) {
-          ref.current.style.transform = `translateX(0px)`;
-          setTotalScrollOffset(0);
-        } else {
-          ref.current.style.transform = `translateX(-${scrollOffset}px)`;
-          setTotalScrollOffset((s) => scrollOffset);
-        }
+        return;
       }
     }
   };
