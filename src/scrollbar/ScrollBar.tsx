@@ -7,21 +7,23 @@ import mine from "./images/mine.png";
 import hangman from "./images/hangman.png";
 import tictactoe from "./images/tic-tac-toe.png";
 import etch from "./images/etch.png";
+import allgames from "./images/all-games.png";
 import guessthenumber from "./images/guess-the-number.png";
-import "./scrollbar.css";
+import "../styles/scrollbar.css";
 
 const ScrollBar = () => {
   const [totalScrollOffset, setTotalScrollOffset] = useState(0);
   const [widthOf, setWidthOf] = useState({ screen: 0, container: 0 });
   const ref = useRef<HTMLDivElement>(null);
   const gameButonsArray = [
+    { image: allgames, text: "All Games" },
     { image: mine, text: "Minesweeper" },
-    { image: tictactoe, text: "Tic Tac Toe" },
     { image: mastermind, text: "Mastermind" },
     { image: hangman, text: "Hangman" },
+    { image: tictactoe, text: "Tic Tac Toe" },
+    { image: yatzy, text: "Yatzy" },
     { image: guessthenumber, text: "Number Guessing Game" },
     { image: etch, text: "Etch-A-Sketch" },
-    { image: yatzy, text: "Yatzy" },
   ];
   const errorMargin = 2;
 

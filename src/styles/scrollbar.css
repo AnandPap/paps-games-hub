@@ -1,6 +1,6 @@
 .scrollbar {
   position: relative;
-  flex-grow: 1;
+  margin: 1rem 0;
 }
 .game-buttons-container-wrapper {
   overflow: hidden;
@@ -17,10 +17,10 @@
   cursor: pointer;
   border: none;
   border-radius: 5rem;
-  background-color: #f5f8fd;
+  background-color: #f4f8fd;
   display: flex;
   align-items: center;
-  padding: 0 1rem 0 4.5rem;
+  padding: 0 1rem 0.25rem 4.5rem;
   position: relative;
   min-width: fit-content;
 }
@@ -33,6 +33,10 @@
 .game-button-text {
   font-size: 1.2rem;
   position: relative;
+  font-family: var(--font-family);
+}
+.game-button:hover {
+  background-color: white;
 }
 .game-button:hover > .game-button-image {
   transform: translate(0, -0.75rem);
