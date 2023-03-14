@@ -1,0 +1,84 @@
+:root,
+#root {
+  height: 100%;
+}
+body {
+  --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-family);
+  background-image: url(https://thaka.bing.com/th?id=OUWL.casual_games_background_light);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 80%;
+  height: 100%;
+  margin: auto;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.all-games-container {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  gap: 2rem;
+}
+.all-games-left {
+  height: 450px;
+  width: 30%;
+  overflow: hidden;
+  background-color: #edf4fc;
+  border-radius: 1rem;
+  padding-bottom: 5rem;
+}
+.recently-played-content,
+.recommended-content {
+  height: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.recommended-game-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  margin-left: 1rem;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 1rem;
+  margin-right: 10px;
+}
+.recommended-game-wrapper:hover {
+  background-color: white;
+}
+.recommended-game-image {
+  width: 60px;
+  height: 60px;
+}
+.recently-played-title-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.recently-played-image {
+  width: 40px;
+  height: 40px;
+  margin: 0 0.5rem 0 1.5rem;
+}
+.all-games-right {
+  border-radius: 1rem;
+  height: 450px;
+  flex-grow: 1;
+  background-color: yellow;
+}
+
+footer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -30,7 +30,7 @@
   width: 4.5rem;
   transition: transform 0.25s ease 0.05s;
 }
-.game-button-text {
+.game-button-name {
   font-size: 1.2rem;
   position: relative;
   font-family: var(--font-family);

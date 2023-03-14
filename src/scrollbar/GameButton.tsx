@@ -1,8 +1,8 @@
-const GameButton = (props: { image: string; text: string }) => {
+const GameButton = (props: { image: string; gameName: string }) => {
   return (
     <button className="game-button">
       <img src={props.image} alt="Game Button" className="game-button-image" />
-      <p className="game-button-text">{props.text}</p>
+      <p className="game-button-name">{props.gameName}</p>
     </button>
   );
 };

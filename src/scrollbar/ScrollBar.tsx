@@ -1,29 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import GameButton from "./GameButton";
 import ScrollButton from "./ScrollButton";
-import mastermind from "./images/mastermind.png";
-import yatzy from "./images/yatzy.png";
-import mine from "./images/mine.png";
-import hangman from "./images/hangman.png";
-import tictactoe from "./images/tic-tac-toe.png";
-import etch from "./images/etch.png";
-import allgames from "./images/all-games.png";
-import guessthenumber from "./images/guess-the-number.png";
-import "../styles/scrollbar.css";
+import allgames from "../assets/scrollbar-images/all-games.png";
 
-const ScrollBar = () => {
+interface gamesObject {
+  image: string;
+  gameName: string;
+}
+
+const ScrollBar = (props: { gamesArray: gamesObject[] }) => {
   const [totalScrollOffset, setTotalScrollOffset] = useState(0);
   const [widthOf, setWidthOf] = useState({ screen: 0, container: 0 });
   const ref = useRef<HTMLDivElement>(null);
   const gameButonsArray = [
-    { image: allgames, text: "All Games" },
-    { image: mine, text: "Minesweeper" },
-    { image: mastermind, text: "Mastermind" },
-    { image: hangman, text: "Hangman" },
-    { image: tictactoe, text: "Tic Tac Toe" },
-    { image: yatzy, text: "Yatzy" },
-    { image: guessthenumber, text: "Number Guessing Game" },
-    { image: etch, text: "Etch-A-Sketch" },
+    { image: allgames, gameName: "All Games" },
+    ...props.gamesArray,
   ];
   const errorMargin = 2;
 
@@ -99,7 +90,11 @@ const ScrollBar = () => {
       <div className="game-buttons-container-wrapper">
         <div ref={ref} className="game-buttons-container">
           {gameButonsArray.map((object, i) => (
-            <GameButton key={i} image={object.image} text={object.text} />
+            <GameButton
+              key={i}
+              image={object.image}
+              gameName={object.gameName}
+            />
           ))}
         </div>
       </div>
