@@ -1,5 +1,6 @@
 import ScrollBar from "./scrollbar/ScrollBar";
 import recentlyPlayed from "./assets/recently-played.png";
+import recommended from "./assets/recommended.png";
 import { useEffect, useState } from "react";
 import mastermind from "./assets/scrollbar-images/mastermind.png";
 import yatzy from "./assets/scrollbar-images/yatzy.png";
@@ -19,9 +20,6 @@ function App() {
     { image: yatzy, gameName: "Yatzy" },
     { image: guessthenumber, gameName: "Number Guessing Game" },
     { image: etch, gameName: "Etch-A-Sketch" },
-    { image: etch, gameName: "Etch-A-Sketch" },
-    { image: etch, gameName: "Etch-A-Sketch" },
-    { image: etch, gameName: "Etch-A-Sketch" },
   ];
 
   useEffect(() => {
@@ -36,16 +34,17 @@ function App() {
         <div className="all-games-left">
           <div className="recently-played-title-wrapper recommended-title-wrapper">
             <img
-              src={recentlyPlayed}
+              src={recommended}
               alt="Recently played"
               className="recently-played-image"
             />
-            <h2>Recently played</h2>
+            <h2>Games you may like</h2>
+            {/* <h2>Recently played</h2> */}
           </div>
           <div className="recently-played-content recommended-content">
             {gamesArray.map((game, i) => {
               return (
-                <div className="recommended-game-wrapper">
+                <div key={i} className="recommended-game-wrapper">
                   <img
                     src={game.image}
                     alt="Game image"
