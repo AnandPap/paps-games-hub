@@ -24,7 +24,6 @@ function App() {
     { image: yatzy, gameName: "Yatzy" },
     { image: guessthenumber, gameName: "Number Guessing Game" },
     { image: etch, gameName: "Etch-A-Sketch" },
-    { image: minesweeper2, gameName: "Minesweeper" },
   ];
 
   useEffect(() => {
