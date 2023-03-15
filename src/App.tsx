@@ -1,14 +1,18 @@
-import ScrollBar from "./scrollbar/ScrollBar";
-import recentlyPlayed from "./assets/recently-played.png";
-import recommended from "./assets/recommended.png";
 import { useEffect, useState } from "react";
+import ScrollBar from "./scrollbar/ScrollBar";
 import mastermind from "./assets/scrollbar-images/mastermind.png";
 import yatzy from "./assets/scrollbar-images/yatzy.png";
-import mine from "./assets/scrollbar-images/mine.png";
+import mine from "./assets/scrollbar-images/minesweeper.png";
 import hangman from "./assets/scrollbar-images/hangman.png";
 import tictactoe from "./assets/scrollbar-images/tic-tac-toe.png";
-import etch from "./assets/scrollbar-images/etch.png";
+import etch from "./assets/scrollbar-images/etch-a-sketch.png";
 import guessthenumber from "./assets/scrollbar-images/guess-the-number.png";
+import recommended from "./assets/recommended.png";
+import staffPicks from "./assets/staff-picks.png";
+import minesweeper2 from "./assets/minesweeper2.png";
+import mastermind2 from "./assets/mastermind2.jpg";
+import ticTacToe2 from "./assets/tic-tac-toe2.png";
+import recentlyPlayed from "./assets/recently-played.png";
 
 function App() {
   const [recentlyPlayedGames, setRecentlyPlayedGames] = useState<string[]>([]);
@@ -20,6 +24,7 @@ function App() {
     { image: yatzy, gameName: "Yatzy" },
     { image: guessthenumber, gameName: "Number Guessing Game" },
     { image: etch, gameName: "Etch-A-Sketch" },
+    { image: minesweeper2, gameName: "Minesweeper" },
   ];
 
   useEffect(() => {
@@ -32,16 +37,16 @@ function App() {
       <ScrollBar gamesArray={gamesArray} />
       <div className="all-games-container">
         <div className="all-games-left">
-          <div className="recently-played-title-wrapper recommended-title-wrapper">
+          <div className="game-suggestion-title-wrapper">
             <img
               src={recommended}
               alt="Recently played"
-              className="recently-played-image"
+              className="game-suggestion-image"
             />
             <h2>Games you may like</h2>
             {/* <h2>Recently played</h2> */}
           </div>
-          <div className="recently-played-content recommended-content">
+          <div className="game-suggestion-left-content">
             {gamesArray.map((game, i) => {
               return (
                 <div key={i} className="recommended-game-wrapper">
@@ -56,7 +61,28 @@ function App() {
             })}
           </div>
         </div>
-        <div className="all-games-right"></div>
+        <div className="all-games-right">
+          <div className="game-suggestion-title-wrapper">
+            <img
+              src={staffPicks}
+              alt="Recently played"
+              className="game-suggestion-image"
+            />
+            <h2>Staff picks</h2>
+          </div>
+          <div className="game-suggestion-right-content">
+            <div className="left-grid-column">
+              <div className="top-game">
+                <img src={mastermind2} alt="" />
+              </div>
+              <div className="bottom-game">
+                <img src={minesweeper2} alt="" />
+              </div>
+            </div>
+            <div className="middle-grid-column"></div>
+            <div className="right-grid-column"></div>
+          </div>
+        </div>
       </div>
       <footer>
         <p>
