@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import GameButton from "./GameButton";
 import ScrollButton from "./ScrollButton";
-import allgames from "../assets/scrollbar-images/all-games.png";
+import allgames from "../assets/scrollbar-icons/all-games.png";
 
 interface gamesObject {
   image: string;
