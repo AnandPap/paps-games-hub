@@ -9,27 +9,24 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  width: 80%;
   height: 100%;
-  margin: auto;
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  margin: auto;
+  width: 1275px;
 }
 
 .all-games-container {
   flex-grow: 1;
   height: 100%;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 }
 .all-games-left {
   height: 500px;
+  width: 300px;
   overflow: hidden;
-  min-width: 30%;
   background-color: #edf4fc;
   border-radius: 1rem;
   padding: 1rem;
@@ -56,7 +53,11 @@ body {
   display: flex;
   align-items: center;
   border-radius: 0.5rem;
+  margin-right: 0.5rem;
   cursor: pointer;
+}
+.recommended-game-wrapper > h3 {
+  margin-right: 0.5rem;
 }
 .recommended-game-wrapper:hover {
   background-color: white;
@@ -67,32 +68,51 @@ body {
 }
 
 .all-games-right {
-  flex-grow: 1;
   border-radius: 1rem;
   height: 500px;
-  background-color: yellow;
+  width: 925px;
+  flex-grow: 1;
+  background-color: #edf4fc;
   padding: 1rem;
   padding-top: 0;
-  overflow: hidden;
-}
-.game-suggestion-right-content {
-  display: grid;
-  grid-template-columns: 1fr 2.6fr 1fr;
-  gap: 2rem;
-  height: 100%;
-  background-color: red;
-}
-.left-grid-column {
   display: flex;
   flex-direction: column;
-  background-color: green;
 }
-.left-grid-column > * {
+.game-suggestion-right-content {
+  --title-height: 72px;
+  display: grid;
+  grid-template-columns: 1fr 2.6fr 1fr;
+  column-gap: 1rem;
+  flex-grow: 1;
 }
-.top-game > img,
-.bottom-game > img {
-  width: 100%;
-  object-fit: cover;
+.left-grid-column {
+  grid-column: 1 / auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.middle-grid-column {
+  grid-column: 2 / auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.right-grid-column {
+  grid-column: 3 / auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.left-grid-column > *,
+.right-grid-column > *,
+.middle-grid-column > * {
+  flex-grow: 1;
+  background-image: url(../assets/minesweeper2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1rem;
+  cursor: pointer;
 }
 
 footer {
@@ -100,4 +120,42 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .all-games-container {
+    flex-direction: column-reverse;
+  }
+  .all-games-left {
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .game-suggestion-right-content {
+    grid-template-columns: 2fr 1fr;
+  }
+  .left-grid-column {
+    display: none;
+  }
+  .middle-grid-column {
+    grid-column: 1 / auto;
+  }
+  .right-grid-column {
+    grid-column: 2 / auto;
+  }
+}
+@media only screen and (max-width: 1440px) {
+  .game-suggestion-right-content {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .all-games-container {
+    flex-direction: column-reverse;
+    width: 80%;
+    margin: auto;
+  }
+  .all-games-right {
+    height: 800px;
+  }
 }

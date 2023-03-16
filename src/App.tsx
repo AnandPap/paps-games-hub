@@ -71,15 +71,16 @@ function App() {
           </div>
           <div className="game-suggestion-right-content">
             <div className="left-grid-column">
-              <div className="top-game">
-                <img src={mastermind2} alt="" />
-              </div>
-              <div className="bottom-game">
-                <img src={minesweeper2} alt="" />
-              </div>
+              <div className="top-game"></div>
+              <div className="bottom-game"></div>
             </div>
-            <div className="middle-grid-column"></div>
-            <div className="right-grid-column"></div>
+            <div className="middle-grid-column">
+              <div className="middle-game"></div>
+            </div>
+            <div className="right-grid-column">
+              <div className="top-game"></div>
+              <div className="bottom-game"></div>
+            </div>
           </div>
         </div>
       </div>
