@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root,
 #root {
   height: 100%;
@@ -14,21 +18,18 @@ body {
 
 .App {
   margin: auto;
-  width: 1275px;
 }
 
 .all-games-container {
-  flex-grow: 1;
-  height: 100%;
   display: flex;
-  gap: 1rem;
+  flex-direction: column-reverse;
+  width: 300px;
+  margin: 0 auto;
 }
 .all-games-left {
-  height: 500px;
-  width: 300px;
   overflow: hidden;
-  background-color: #edf4fc;
   border-radius: 1rem;
+  height: 400px;
   padding: 1rem;
   padding-top: 0;
   display: flex;
@@ -37,10 +38,13 @@ body {
 .game-suggestion-title-wrapper {
   display: flex;
   align-items: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin: 1rem 0;
 }
 .game-suggestion-image {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   margin-right: 0.5rem;
 }
 .game-suggestion-left-content {
@@ -63,16 +67,13 @@ body {
   background-color: white;
 }
 .recommended-game-image {
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
 }
 
 .all-games-right {
+  height: 625px;
   border-radius: 1rem;
-  height: 500px;
-  width: 925px;
-  flex-grow: 1;
-  background-color: #edf4fc;
   padding: 1rem;
   padding-top: 0;
   display: flex;
@@ -81,33 +82,30 @@ body {
 .game-suggestion-right-content {
   --title-height: 72px;
   display: grid;
-  grid-template-columns: 1fr 2.6fr 1fr;
-  column-gap: 1rem;
+  grid-template-rows: 3fr 1.5fr 1.5fr;
+  row-gap: 1rem;
   flex-grow: 1;
 }
 .left-grid-column {
-  grid-column: 1 / auto;
+  grid-row: 2 / auto;
   display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 .middle-grid-column {
-  grid-column: 2 / auto;
+  grid-row: 1 / auto;
   display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 .right-grid-column {
-  grid-column: 3 / auto;
+  grid-row: 3 / auto;
   display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 .left-grid-column > *,
 .right-grid-column > *,
 .middle-grid-column > * {
   flex-grow: 1;
-  background-image: url(../assets/minesweeper2.png);
+  background-image: url(../assets/game-cover-images/minesweeper2.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -120,4 +118,99 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.game-suggestion-left-content::-webkit-scrollbar {
+  width: 10px;
+}
+.game-suggestion-left-content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px hsl(0, 0%, 80%);
+  border-radius: 10px;
+}
+.game-suggestion-left-content::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 45%);
+  border-radius: 10px;
+}
+
+@media only screen and (min-width: 700px) {
+  .App {
+    width: 650px;
+  }
+  .all-games-container {
+    width: 625px;
+  }
+  .all-games-right,
+  .all-games-left {
+    background-color: #edf4fc;
+  }
+  .all-games-left {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .all-games-right {
+    height: 500px;
+  }
+  .game-suggestion-right-content {
+    grid-template-rows: none;
+    grid-template-columns: 2fr 1fr;
+    row-gap: unset;
+    column-gap: 1rem;
+    width: auto;
+  }
+  .left-grid-column {
+    grid-row: unset;
+    flex-direction: column;
+    display: none;
+  }
+  .middle-grid-column {
+    grid-row: unset;
+    grid-column: 1 / auto;
+  }
+  .right-grid-column {
+    grid-row: unset;
+    flex-direction: column;
+    grid-column: 2 / auto;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .App {
+    width: 925px;
+  }
+  .all-games-container {
+    width: 100%;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .all-games-left {
+    height: 500px;
+    width: 300px;
+    margin: 0;
+  }
+  .all-games-right {
+    flex-grow: 1;
+  }
+}
+@media only screen and (min-width: 1300px) {
+  .App {
+    width: 1225px;
+  }
+  .game-suggestion-right-content {
+    grid-template-columns: 1fr 2.5fr 1fr;
+  }
+  .left-grid-column {
+    grid-column: 1 / auto;
+    display: flex;
+  }
+  .middle-grid-column {
+    grid-column: 2 / auto;
+  }
+  .right-grid-column {
+    grid-column: 3 / auto;
+  }
+  .all-games-left {
+    width: 325px;
+  }
+  .all-games-right {
+    width: 900px;
+  }
 }

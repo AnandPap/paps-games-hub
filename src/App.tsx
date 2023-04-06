@@ -42,7 +42,7 @@ function App() {
               alt="Recently played"
               className="game-suggestion-image"
             />
-            <h2>Games you may like</h2>
+            <h2>Other games you may like</h2>
             {/* <h2>Recently played</h2> */}
           </div>
           <div className="game-suggestion-left-content">

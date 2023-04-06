@@ -1,6 +1,7 @@
 .scrollbar {
   position: relative;
-  margin: 1rem 0 2rem;
+  margin: 1rem auto 2rem;
+  width: 90%;
 }
 .game-buttons-container-wrapper {
   overflow: hidden;
@@ -60,6 +61,7 @@
 }
 
 .arrow-wrapper {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
   border-radius: 50%;
   background-color: white;
   width: 30px;
