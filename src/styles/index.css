@@ -27,12 +27,12 @@ body {
   margin: 0 auto;
 }
 .all-games-left {
+  display: none;
   overflow: hidden;
   border-radius: 1rem;
   height: 400px;
   padding: 1rem;
   padding-top: 0;
-  display: flex;
   flex-direction: column;
 }
 .game-suggestion-title-wrapper {
@@ -53,20 +53,20 @@ body {
   flex-direction: column;
   gap: 0.25rem;
 }
-.recommended-game-wrapper {
+.game-you-may-like-wrapper {
   display: flex;
   align-items: center;
   border-radius: 0.5rem;
   margin-right: 0.5rem;
   cursor: pointer;
 }
-.recommended-game-wrapper > h3 {
+.game-you-may-like-wrapper > h3 {
   margin-right: 0.5rem;
 }
-.recommended-game-wrapper:hover {
+.game-you-may-like-wrapper:hover {
   background-color: white;
 }
-.recommended-game-image {
+.game-you-may-like-image {
   width: 65px;
   height: 65px;
 }
@@ -132,6 +132,19 @@ footer {
   border-radius: 10px;
 }
 
+.recommended-games {
+  margin-top: 1rem;
+}
+.recommended-games-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  text-align: center;
+}
+.recommended-game-image {
+  width: 100px;
+  height: 100px;
+}
+
 @media only screen and (min-width: 700px) {
   .App {
     width: 650px;
@@ -184,10 +197,14 @@ footer {
   .all-games-left {
     height: 500px;
     width: 300px;
+    display: flex;
     margin: 0;
   }
   .all-games-right {
     flex-grow: 1;
+  }
+  .recommended-games {
+    display: none;
   }
 }
 @media only screen and (min-width: 1300px) {

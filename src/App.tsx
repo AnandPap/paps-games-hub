@@ -22,8 +22,8 @@ function App() {
     { image: hangman, gameName: "Hangman" },
     { image: tictactoe, gameName: "Tic Tac Toe" },
     { image: yatzy, gameName: "Yatzy" },
-    { image: guessthenumber, gameName: "Number Guessing Game" },
     { image: etch, gameName: "Etch-A-Sketch" },
+    { image: guessthenumber, gameName: "Number Guessing Game" },
   ];
 
   useEffect(() => {
@@ -39,13 +39,37 @@ function App() {
           <div className="game-suggestion-title-wrapper">
             <img
               src={recommended}
-              alt="Recently played"
+              alt="Games you may like"
               className="game-suggestion-image"
             />
-            <h2>Other games you may like</h2>
+            <h2>Games you may like</h2>
             {/* <h2>Recently played</h2> */}
           </div>
           <div className="game-suggestion-left-content">
+            {gamesArray.map((game, i) => {
+              return (
+                <div key={i} className="game-you-may-like-wrapper">
+                  <img
+                    src={game.image}
+                    alt="Game image"
+                    className="game-you-may-like-image"
+                  />
+                  <h3>{game.gameName}</h3>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="recommended-games">
+          <div className="game-suggestion-title-wrapper">
+            <img
+              src={recommended}
+              alt="Recently played"
+              className="game-suggestion-image"
+            />
+            <h2>Recommended games</h2>
+          </div>
+          <div className="recommended-games-content">
             {gamesArray.map((game, i) => {
               return (
                 <div key={i} className="recommended-game-wrapper">
