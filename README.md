@@ -1,7 +1,7 @@
 # Paps Games Hub
 
-> **Warning**
-This project is currently in construction. Idea is to implement all the games I made, and present them to end user with option to choose one they wish to play with additional features such as earning points and competing with other users. <br />  **Improvements coming soon!™**
+> [!WARNING]
+This project is currently under construction. Idea is to implement all the games I previously made, and present them to the end user with option to choose one they wish to play with additional features such as earning points and competing with other players. <br />  **Improvements coming soon!™**
 
 ## Deployed version:
 
