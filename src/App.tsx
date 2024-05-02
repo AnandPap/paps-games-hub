@@ -8,6 +8,7 @@ import tictactoe from "./assets/scrollbar-icons/tic-tac-toe.png";
 import etch from "./assets/scrollbar-icons/etch-a-sketch.png";
 import guessthenumber from "./assets/scrollbar-icons/guess-the-number.png";
 import recommended from "./assets/recommended.png";
+import workInProgress from "./assets/work-in-progress.png";
 import staffPicks from "./assets/staff-picks.png";
 import minesweeper2 from "./assets/minesweeper2.png";
 import mastermind2 from "./assets/mastermind2.jpg";
@@ -37,11 +38,7 @@ function App() {
       <div className="all-games-container">
         <div className="all-games-left">
           <div className="game-suggestion-title-wrapper">
-            <img
-              src={recommended}
-              alt="Games you may like"
-              className="game-suggestion-image"
-            />
+            <img src={recommended} alt="Games you may like" className="game-suggestion-image" />
             <h2>Games you may like</h2>
             {/* <h2>Recently played</h2> */}
           </div>
@@ -49,11 +46,7 @@ function App() {
             {gamesArray.map((game, i) => {
               return (
                 <div key={i} className="game-you-may-like-wrapper">
-                  <img
-                    src={game.image}
-                    alt="Game image"
-                    className="game-you-may-like-image"
-                  />
+                  <img src={game.image} alt="Game image" className="game-you-may-like-image" />
                   <h3>{game.gameName}</h3>
                 </div>
               );
@@ -62,22 +55,14 @@ function App() {
         </div>
         <div className="recommended-games">
           <div className="game-suggestion-title-wrapper">
-            <img
-              src={recommended}
-              alt="Recently played"
-              className="game-suggestion-image"
-            />
+            <img src={recommended} alt="Recently played" className="game-suggestion-image" />
             <h2>Recommended games</h2>
           </div>
           <div className="recommended-games-content">
             {gamesArray.map((game, i) => {
               return (
                 <div key={i} className="recommended-game-wrapper">
-                  <img
-                    src={game.image}
-                    alt="Game image"
-                    className="recommended-game-image"
-                  />
+                  <img src={game.image} alt="Game image" className="recommended-game-image" />
                   <h3>{game.gameName}</h3>
                 </div>
               );
@@ -86,11 +71,7 @@ function App() {
         </div>
         <div className="all-games-right">
           <div className="game-suggestion-title-wrapper">
-            <img
-              src={staffPicks}
-              alt="Recently played"
-              className="game-suggestion-image"
-            />
+            <img src={staffPicks} alt="Recently played" className="game-suggestion-image" />
             <h2>Staff picks</h2>
           </div>
           <div className="game-suggestion-right-content">
@@ -108,13 +89,14 @@ function App() {
           </div>
         </div>
       </div>
-      <footer>
+      <footer className="gap-1">
         <p>
           Idea for this site taken from{" "}
           <a href="https://www.msn.com/en-gb/play" target="_blank">
             MSN Games
           </a>
         </p>
+        <p>🚧⛔⚠️ Work in progress ⚠️⛔🚧</p>
       </footer>
     </div>
   );
